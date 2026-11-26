@@ -9,7 +9,7 @@ package seminar4
 fun parseSeats(raw: Any?): Int? {
     var cor : Any? = when (raw) {
         is Int -> raw
-        is String -> raw?.trim()
+        is String -> raw.trim()
         else -> null
     }
     cor = cor?.toString()

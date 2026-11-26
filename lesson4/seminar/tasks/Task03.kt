@@ -9,13 +9,15 @@ package seminar4
  * Подсказка: начать можно с `val email = raw?.trim() ?: return null`.
  */
 fun normalizeEmail(raw: String?): String? {
-    val trimmed : String = raw?.trim() ?: return null
+    var trimmed : String = raw?.trim() ?: return null
+    if(trimmed.any {it.isWhitespace()}) {return null}
     var frst = trimmed.indexOf('@')
     var lst = trimmed.lastIndexOf('@')
-    when(frst) {
-        lst -> return null
-        0 -> return null
-        trimmed.length - 1 -> return null
-        else return trimmed
+    when {
+        frst == -1 -> return null
+        frst != lst -> return null
+        frst == 0 -> return null
+        frst == trimmed.length - 1 -> return null
+        else -> return trimmed
     }
 }
